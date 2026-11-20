@@ -58,7 +58,7 @@ def reverb(x, secs=1.4, mix=0.25):
 BPM = 124
 beat = 60 / BPM
 bar = 4 * beat
-drop = L[3]["start"] - 0.05
+drop = tm.get("drop", L[min(3, len(L) - 1)]["start"] - 0.05)  # full groove from the main reveal (override with timing.json "drop")
 music = np.zeros((N, 2))
 send = np.zeros((N, 2))  # reverb send
 
@@ -268,8 +268,8 @@ for ev in sfx:
 fx = reverb(fx, 0.6, 0.12)
 
 rv=lambda a: 20*np.log10(np.sqrt(np.mean(a**2))+1e-9)
-sl=slice(int(L[4]["start"]*SR),int(L[4]["end"]*SR))
-print("voice dB",round(rv(voice[sl]),1),"music-under-voice dB",round(rv(music[sl,0]*0.15),1),"music-after-drop-open dB",round(rv(music[int((L[7]["end"]+.1)*SR):int((L[7]["end"]+.6)*SR),0]*0.15),1))
+sl=slice(int(L[1]["start"]*SR),int(L[-2]["end"]*SR))
+print("voice dB",round(rv(voice[sl]),1),"music-under-voice dB",round(rv(music[sl,0]*0.15),1),"music-after-drop-open dB",round(rv(music[int((L[-1]["end"]+.1)*SR):int((L[-1]["end"]+.6)*SR),0]*0.15),1))
 mix = np.stack([voice, voice], 1) * 1.0 + music * 0.15 + fx * 0.5
 mix /= max(1e-9, np.abs(mix).max()) / 0.9
 sf.write("mix.wav", mix.astype(np.float32), SR)

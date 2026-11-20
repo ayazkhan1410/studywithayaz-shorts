@@ -24,6 +24,8 @@ with sync_playwright() as p:
     m = np.convolve(m, [0.25, 0.5, 0.25], "same")
     pg.evaluate("a => setMouth(a)", [round(float(x), 3) for x in m])
     pg.evaluate("document.fonts.ready")
+    # wait for any embedded footage (screen recordings) to be seekable
+    pg.evaluate("Promise.all([...document.querySelectorAll('video')].map(v=>v.readyState>=3?1:new Promise(r=>{v.addEventListener('canplaythrough',r,{once:true});v.load()})))")
     if mode == "stills":
         os.makedirs("stills", exist_ok=True)
         for t in sys.argv[2:]:
