@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:P;src:url("/usr/share/fonts/truetype/google-fonts/ofl/montserrat/Montserrat[wght].ttf");font-weight:100 900}
+@font-face{font-family:M;src:url(/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:P,sans-serif}
+#bg{position:absolute;inset:0;background:linear-gradient(160deg,#EEF0FF 0%,#FDF0FF 45%,#FFF3E8 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.abs{position:absolute}
+.card{position:absolute;background:#fff;border-radius:36px;box-shadow:0 30px 70px rgba(70,50,160,.18),0 4px 14px rgba(70,50,160,.08)}
+.center{left:50%;transform:translateX(-50%)}
+.chip{position:absolute;padding:14px 30px;border-radius:999px;font-weight:800;font-size:38px;color:#fff;white-space:nowrap}
+#cap{position:absolute;left:70px;right:130px;top:1035px;text-align:center;font-weight:800;font-size:66px;line-height:1.28;color:#1B1640}
+#cap span{display:inline-block;margin:0 9px;transition:none}
+#cap .kw{padding:0 16px;border-radius:16px;color:#fff}
+.mono{font-family:M,monospace}
+.scene{position:absolute;inset:0;opacity:0}
+</style></head>
+<body>
+<div id="bg">
+  <div class="blob" id="b1" style="width:620px;height:620px;background:#B9A8FF;left:-160px;top:120px"></div>
+  <div class="blob" id="b2" style="width:560px;height:560px;background:#FFC1D9;right:-180px;top:820px"></div>
+  <div class="blob" id="b3" style="width:500px;height:500px;background:#FFE0A8;left:120px;top:1450px"></div>
+</div>
+
+<div id="stage" style="position:absolute;inset:0;transform:scale(.8);transform-origin:540px 40px">
+<!-- S1: AI scanning code -->
+<div class="scene" id="s1">
+  <div class="chip center" id="s1title" style="top:230px;background:#1B1640">AI <span style="color:#FFC93C">vs</span> ? ? ?</div>
+  <div class="card center" id="s1card" style="top:360px;width:840px;height:820px;padding:50px 50px">
+    <div style="display:flex;gap:14px;margin-bottom:34px"><i style="width:26px;height:26px;border-radius:50%;background:#FF5F57;display:block"></i><i style="width:26px;height:26px;border-radius:50%;background:#FEBC2E;display:block"></i><i style="width:26px;height:26px;border-radius:50%;background:#28C840;display:block"></i>
+      <div class="mono" style="margin-left:24px;font-size:28px;color:#9A94C8;line-height:26px">decoder.???</div></div>
+    <div id="s1lines"></div>
+    <div id="s1beam" class="abs" style="left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(108,76,241,0),rgba(108,76,241,.28),rgba(108,76,241,0));border-bottom:4px solid #6C4CF1"></div>
+    <div id="s1bug" class="abs" style="left:640px;top:470px;width:120px;height:120px;border-radius:50%;background:#FF4D5E;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 18px rgba(255,77,94,.25)">
+      <svg width="74" height="74" viewBox="0 0 24 24" fill="#fff"><ellipse cx="12" cy="13.5" rx="5" ry="6.5"/><circle cx="12" cy="6" r="3"/><path d="M4 9l3 2M20 9l-3 2M3 14h4M21 14h-4M4 19l3-2M20 19l-3-2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+  <div class="chip" id="s1stamp" style="left:300px;top:1090px;background:#FF4D5E;font-size:58px;padding:18px 44px;border:6px solid #fff;box-shadow:0 18px 40px rgba(255,77,94,.4)">CRITICAL BUG</div>
+</div>
+
+<!-- S2: stopwatch -->
+<div class="scene" id="s2">
+  <div class="card center" style="top:380px;width:720px;height:720px;border-radius:50%;display:flex;align-items:center;justify-content:center">
+    <svg width="640" height="640" viewBox="0 0 640 640" style="position:absolute;left:40px;top:40px;transform:rotate(-90deg)">
+      <circle cx="320" cy="320" r="280" fill="none" stroke="#EEEAFE" stroke-width="44"/>
+      <circle id="s2ring" cx="320" cy="320" r="280" fill="none" stroke="#6C4CF1" stroke-width="44" stroke-linecap="round" stroke-dasharray="1759.3" stroke-dashoffset="1759.3"/>
+    </svg>
+    <div style="text-align:center;position:relative">
+      <div id="s2time" class="mono" style="font-size:72px;color:#9A94C8;margin-bottom:20px">00:00</div>
+      <div id="s2big" style="font-weight:900;font-size:82px;color:#6C4CF1;line-height:1">~1 HOUR</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3: mystery language -->
+<div class="scene" id="s3">
+  <div class="card center" id="s3card" style="top:560px;width:560px;height:400px;display:flex;align-items:center;justify-content:center">
+    <div id="s3q" style="font-weight:900;font-size:150px;color:#1B1640;letter-spacing:20px">????</div>
+  </div>
+  <div class="card s3i" id="s3a" style="left:90px;top:300px;width:330px;height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#6C4CF1" stroke-width="2"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg>
+    <div style="font-weight:800;font-size:40px;color:#1B1640">Banks</div></div>
+  <div class="card s3i" id="s3b" style="left:660px;top:300px;width:330px;height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#FF4D8A" stroke-width="2"><path d="M4 21V5l8-2v18M12 8l8 2v11M3 21h18M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2"/></svg>
+    <div style="font-weight:800;font-size:40px;color:#1B1640">Companies</div></div>
+  <div class="card s3i" id="s3c" style="left:375px;top:1030px;width:330px;height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#18A87E" stroke-width="2"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></svg>
+    <div style="font-weight:800;font-size:40px;color:#1B1640">Servers</div></div>
+</div>
+
+<!-- S4: JAVA reveal -->
+<div class="scene" id="s4">
+  
+  <div id="s4wrap" class="abs" style="left:0;right:0;top:420px;text-align:center">
+    <svg id="s4cup" width="300" height="300" viewBox="0 0 120 120">
+      <path id="st1" d="M45 30c-6-8 6-12 0-20" stroke="#FF8A3D" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path id="st2" d="M62 30c-6-8 6-12 0-20" stroke="#FF8A3D" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M22 42h66v28c0 18-14 30-33 30S22 88 22 70z" fill="#FF6B3D"/>
+      <path d="M88 50h6c8 0 12 5 12 11s-4 11-12 11h-7" stroke="#FF6B3D" stroke-width="8" fill="none"/>
+      <rect x="14" y="104" width="82" height="8" rx="4" fill="#1B1640"/>
+    </svg>
+    <div id="s4txt" style="font-weight:900;font-size:260px;line-height:1;color:#1B1640;letter-spacing:10px">JAVA</div>
+  </div>
+</div>
+
+<!-- S5: Java4Shell -->
+<div class="scene" id="s5">
+  <div id="s5name" class="abs" style="left:0;right:0;top:250px;text-align:center">
+    <div style="display:inline-block;background:#FF4D5E;color:#fff;font-weight:900;font-size:104px;padding:10px 46px;border-radius:28px;border:8px solid #fff;box-shadow:0 22px 50px rgba(255,77,94,.4)">JAVA4SHELL</div>
+    <div class="mono" style="margin-top:22px;font-size:36px;color:#6B6496">CVE-2026-114938</div>
+  </div>
+  <!-- memory cells -->
+  <div class="card center" id="s5mem" style="top:600px;width:880px;height:450px;padding:44px">
+    <div style="font-weight:800;font-size:44px;color:#1B1640">Base64 decoder <span style="color:#9A94C8;font-weight:600;font-size:34px">→ memory</span></div>
+    <div id="s5cells" style="display:grid;grid-template-columns:repeat(8,1fr);gap:14px;margin-top:34px"></div>
+    <div id="s5oob" style="margin-top:30px;font-weight:800;font-size:40px;color:#FF4D5E">⚠ writes where it shouldn't</div>
+  </div>
+  <!-- attacker -> server -->
+  <div id="s5atk" class="abs" style="left:0;right:0;top:560px;height:620px">
+    <div class="card" style="left:70px;top:120px;width:300px;height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#1B1640">
+      <svg width="140" height="140" viewBox="0 0 24 24" fill="#fff"><path d="M12 2c-4 0-7 3.2-7 7.5V21h14V9.5C19 5.2 16 2 12 2z"/><ellipse cx="12" cy="11.5" rx="4.2" ry="4.6" fill="#1B1640"/><circle cx="10.4" cy="11.3" r=".9" fill="#FF4D5E"/><circle cx="13.6" cy="11.3" r=".9" fill="#FF4D5E"/></svg>
+      <div style="font-weight:800;font-size:40px;color:#fff;margin-top:6px">Attacker</div></div>
+    <div class="card" style="left:710px;top:120px;width:300px;height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#1B1640" stroke-width="1.8"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01" stroke-width="3"/></svg>
+      <div style="font-weight:800;font-size:40px;color:#1B1640;margin-top:6px">Server</div></div>
+    <div id="s5arrow" class="abs" style="left:390px;top:270px;height:20px;background:#FF4D5E;border-radius:10px"></div>
+    <div id="s5packet" class="abs mono" style="top:200px;font-size:38px;color:#FF4D5E">{code}</div>
+    <div id="s5lock" class="abs" style="left:470px;top:420px;width:150px;text-align:center">
+      <svg width="130" height="130" viewBox="0 0 24 24"><path id="s5shackle" d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#1B1640" stroke-width="2.4" fill="none"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="#FFC93C" stroke="#1B1640" stroke-width="1.6"/></svg>
+    </div>
+    <div class="chip" id="s5nopw" style="left:330px;top:-10px;background:#FF4D5E;font-size:52px">NO PASSWORD</div>
+  </div>
+</div>
+
+<!-- S6: Codex + cost -->
+<div class="scene" id="s6">
+  <div class="card center" id="s6term" style="top:280px;width:880px;height:470px;background:#17132F;padding:40px 46px">
+    <div style="display:flex;gap:14px;margin-bottom:28px"><i style="width:24px;height:24px;border-radius:50%;background:#FF5F57;display:block"></i><i style="width:24px;height:24px;border-radius:50%;background:#FEBC2E;display:block"></i><i style="width:24px;height:24px;border-radius:50%;background:#28C840;display:block"></i>
+      <div style="margin-left:20px;font-weight:800;font-size:30px;color:#B9A8FF;line-height:24px">CODEX</div></div>
+    <div id="s6type" class="mono" style="font-size:38px;line-height:1.55;color:#E9E6FF;white-space:pre-wrap"></div>
+  </div>
+  <div class="card center" id="s6price" style="top:820px;width:640px;height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#FFC93C">
+    <div style="font-weight:800;font-size:40px;color:#1B1640">total cost</div>
+    <div id="s6num" style="font-weight:900;font-size:170px;line-height:1;color:#1B1640">$0</div>
+  </div>
+</div>
+
+<!-- S7: chips + fix -->
+<div class="scene" id="s7">
+  <div class="card center" id="s7chip" style="top:300px;width:520px;height:520px;display:flex;align-items:center;justify-content:center">
+    <svg width="440" height="440" viewBox="0 0 100 100">
+      <g stroke="#9A94C8" stroke-width="3" stroke-linecap="round">
+        <path d="M30 14v-8M42 14v-8M54 14v-8M66 14v-8M30 86v8M42 86v8M54 86v8M66 86v8M14 30h-8M14 42h-8M14 54h-8M14 66h-8M86 30h8M86 42h8M86 54h8M86 66h8"/></g>
+      <rect x="14" y="14" width="72" height="72" rx="10" fill="#1B1640"/>
+      <rect x="24" y="24" width="52" height="52" rx="6" fill="#6C4CF1"/>
+      <text x="50" y="47" text-anchor="middle" font-family="P" font-weight="900" font-size="11" fill="#fff">AVX-512</text>
+      <text x="50" y="60" text-anchor="middle" font-family="P" font-weight="700" font-size="7" fill="#DCD4FF">x86-64</text>
+    </svg>
+  </div>
+  <div class="chip center" id="s7lab" style="top:860px;background:#6C4CF1;font-size:46px">Newer Intel &amp; AMD chips</div>
+  <div class="chip center" id="s7fix" style="top:1000px;background:#18C08F;font-size:56px;padding:18px 46px">✓ FIX OUT · Nov 17</div>
+</div>
+
+<!-- S8: update + CTA -->
+<div class="scene" id="s8">
+  <div class="card center" id="s8term" style="top:260px;width:880px;height:330px;background:#17132F;padding:40px 46px">
+    <div id="s8type" class="mono" style="font-size:42px;line-height:1.6;color:#E9E6FF;white-space:pre-wrap"></div>
+  </div>
+  <div class="chip center" id="s8upd" style="top:640px;background:#18C08F;font-size:64px;padding:22px 60px;box-shadow:0 18px 40px rgba(24,192,143,.4)">UPDATE JAVA TODAY</div>
+  <div class="card" id="s8cmt" style="left:110px;top:820px;width:860px;height:170px;display:flex;align-items:center;padding:0 36px;gap:26px">
+    <div style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#6C4CF1,#FF4D8A)"></div>
+    <div><div style="font-weight:600;font-size:30px;color:#9A94C8">Add a comment...</div>
+      <div id="s8word" style="font-weight:900;font-size:64px;color:#1B1640;line-height:1.1"></div></div>
+  </div>
+  <div class="abs" id="s8sub" style="left:0;right:0;top:1060px;text-align:center">
+    <div id="s8btn" style="display:inline-flex;align-items:center;gap:20px;background:#FF0033;color:#fff;font-weight:900;font-size:58px;padding:22px 56px;border-radius:999px;box-shadow:0 18px 40px rgba(255,0,51,.35)">
+      <svg id="s8bell" width="56" height="56" viewBox="0 0 24 24" fill="#fff"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8a2.5 2.5 0 0 0 2.4 2zM19 17v-6a7 7 0 0 0-5-6.7V3.5a2 2 0 0 0-4 0v.8A7 7 0 0 0 5 11v6l-2 2h18z"/></svg>
+      <span id="s8lbl">SUBSCRIBE</span></div>
+    <div style="margin-top:20px;font-weight:800;font-size:40px;color:#1B1640">Study with Ayaz</div>
+  </div>
+  <svg id="s8cursor" class="abs" width="90" height="90" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#1B1640" stroke-width="1.6" stroke-linejoin="round"/></svg>
+</div>
+
+</div>
+<div id="flash" class="abs" style="inset:0;background:#fff;opacity:0"></div>
+<div id="asst" class="abs" style="left:250px;top:1225px;width:580px;height:700px">
+<svg width="580" height="700" viewBox="0 0 580 700" style="overflow:visible">
+ <defs><linearGradient id="hairg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1B2E"/><stop offset="1" stop-color="#1A1020"/></linearGradient></defs>
+ <g id="aBody">
+  <!-- back hair, long waves -->
+  <path d="M170 210 C150 300 130 360 150 430 C165 480 140 520 160 560 L250 560 L250 300 Z" fill="url(#hairg)"/>
+  <path d="M410 210 C430 300 450 360 430 430 C415 480 440 520 420 560 L330 560 L330 300 Z" fill="url(#hairg)"/>
+  <!-- neck -->
+  <rect x="258" y="330" width="64" height="90" rx="20" fill="#D99E79"/>
+  <!-- blazer -->
+  <path d="M120 700 L135 520 C140 470 180 440 240 425 L290 470 L340 425 C400 440 440 470 445 520 L460 700 Z" fill="#1F2A5C"/>
+  <!-- top (lavender-white) -->
+  <path d="M240 425 L290 470 L340 425 L325 700 L255 700 Z" fill="#EEE8FF"/>
+  <path d="M262 432 L290 470 L318 432 C305 445 275 445 262 432 Z" fill="#D99E79"/>
+  <!-- lapels -->
+  <path d="M240 425 L290 560 L262 600 L225 470 Z" fill="#2B3A78"/>
+  <path d="M340 425 L290 560 L318 600 L355 470 Z" fill="#2B3A78"/>
+  <circle cx="290" cy="620" r="7" fill="#C9C2EE"/>
+ </g>
+ <g id="aHead">
+  <!-- side hair behind face -->
+  <path d="M178 230 C168 140 230 85 290 85 C350 85 412 140 402 230 C405 290 395 330 380 350 C392 380 400 410 398 440 C380 410 360 360 335 335 L245 335 C220 360 200 410 182 440 C180 410 188 380 200 350 C185 330 175 290 178 230 Z" fill="url(#hairg)"/>
+  <!-- ears -->
+  <ellipse cx="190" cy="250" rx="18" ry="26" fill="#D99E79"/>
+  <ellipse cx="390" cy="250" rx="18" ry="26" fill="#D99E79"/>
+  <!-- face -->
+  <path d="M195 220 C195 150 240 120 290 120 C340 120 385 150 385 220 C385 300 345 350 290 350 C235 350 195 300 195 220 Z" fill="#E7B28E"/>
+  <!-- bangs, side swept -->
+  <path d="M190 215 C185 140 240 98 300 100 C360 102 400 140 392 205 C370 170 330 150 290 152 C255 154 235 175 220 200 C210 185 200 200 190 215 Z" fill="url(#hairg)"/>
+  
+  <!-- front waves framing face -->
+  <path d="M192 210 C178 260 200 300 186 345 C182 370 196 395 188 420 C215 400 214 370 212 340 C210 300 222 260 212 222 Z" fill="url(#hairg)"/>
+  <path d="M388 210 C402 260 380 300 394 345 C398 370 384 395 392 420 C365 400 366 370 368 340 C370 300 358 260 368 222 Z" fill="url(#hairg)"/>
+  <!-- brows -->
+  <path id="brL" d="M232 202 Q252 192 272 200" stroke="#2A1B2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path id="brR" d="M308 200 Q328 192 348 202" stroke="#2A1B2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- eyes -->
+  <g id="eyeL" style="transform-origin:252px 235px"><ellipse cx="252" cy="235" rx="15" ry="18" fill="#2A1B2E"/><circle cx="257" cy="229" r="5" fill="#fff"/></g>
+  <g id="eyeR" style="transform-origin:328px 235px"><ellipse cx="328" cy="235" rx="15" ry="18" fill="#2A1B2E"/><circle cx="333" cy="229" r="5" fill="#fff"/></g>
+  <path d="M236 222 Q252 212 268 220" stroke="#2A1B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M312 220 Q328 212 344 222" stroke="#2A1B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- cheeks + nose -->
+  <ellipse cx="228" cy="275" rx="20" ry="11" fill="#F08A8A" opacity=".45"/>
+  <ellipse cx="352" cy="275" rx="20" ry="11" fill="#F08A8A" opacity=".45"/>
+  <path d="M290 250 Q284 272 294 278" stroke="#C47E5E" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- mouth -->
+  <path id="mClosed" d="M265 302 Q290 320 315 302" stroke="#9C3D4A" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <g id="mOpen"><ellipse id="mO" cx="290" cy="306" rx="22" ry="12" fill="#7A2335"/><ellipse id="mT" cx="290" cy="314" rx="12" ry="5" fill="#E86A7A"/><rect id="mTeeth" x="274" y="294" width="32" height="6" rx="3" fill="#fff"/></g>
+  <!-- headset -->
+  <path d="M182 240 C176 120 236 70 290 70 C344 70 404 120 398 240" stroke="#2E2E3E" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <rect x="164" y="218" width="40" height="66" rx="18" fill="#2E2E3E"/><rect x="170" y="228" width="12" height="46" rx="6" fill="#7C6CF2"/>
+  <rect x="376" y="218" width="40" height="66" rx="18" fill="#2E2E3E"/>
+  <path d="M190 280 C195 320 225 330 252 322" stroke="#2E2E3E" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <rect x="246" y="314" width="22" height="14" rx="7" fill="#7C6CF2"/>
+ </g>
+ <!-- pointing arm (her left, viewer's right) -->
+ <g id="aArm" style="transform-origin:430px 500px">
+  <path d="M410 470 C450 460 480 470 490 500 L520 360 C522 345 548 345 552 362 L530 520 C520 560 470 575 430 560 Z" fill="#1F2A5C"/>
+  <rect x="512" y="300" width="44" height="74" rx="20" fill="#E7B28E"/>
+  <rect x="524" y="226" width="20" height="90" rx="10" fill="#E7B28E"/>
+  <rect x="510" y="356" width="50" height="22" rx="8" fill="#EEE8FF"/>
+ </g>
+</svg></div>
+<div id="cap"></div>
+
+<script>
+let TM=null; window.SFX=[];
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lin=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const pop=(t,a,d=.35)=>back(lin(t,a,a+d));
+function vis(el,t,a,b,fade=.25){const o=Math.min(lin(t,a,a+fade),1-lin(t,b-fade,b));el.style.opacity=o;return o}
+
+// static content
+(function(){
+  const L=$('s1lines');const w=[520,380,600,300,460,560,250,500,420,340,580,280];
+  w.forEach((x,i)=>{const d=document.createElement('div');d.style.cssText=`height:30px;width:${x}px;margin:0 0 26px ${i%3?60:0}px;border-radius:15px;background:${['#E5E1FF','#FFE3EC','#E2F7EF'][i%3]}`;d.className='ln';L.appendChild(d)});
+  const C=$('s5cells');for(let i=0;i<16;i++){const d=document.createElement('div');d.className='cell';d.style.cssText='height:96px;border-radius:16px;background:#EEEAFE;border:3px solid #DCD4FF';C.appendChild(d)}
+})();
+
+function words(line){ // word timings proportional to length
+  const ws=line.caption.split(' ');const wt=ws.map(w=>w.length+2);const tot=wt.reduce((a,b)=>a+b,0);
+  let acc=line.start;const d=line.end-line.start;
+  return ws.map((w,i)=>{const s=acc;acc+=d*wt[i]/tot;return {w,s,e:acc}});
+}
+let WORDS=[];
+function initTM(tm){TM=tm;WORDS=tm.lines.map(words);
+  const L=tm.lines,S=window.SFX;
+  const at=(t,k)=>S.push({t:+t.toFixed(3),k});
+  at(2.3,'impact');at(2.9,'pop');at(L[1].start,'whoosh');at(L[1].end-.35,'ding');
+  at(L[2].start,'whoosh');at(L[2].start+.6,'pop');at(L[2].start+1.4,'pop');at(L[2].start+2.2,'pop');
+  at(L[3].start-.05,'impact');at(L[4].start,'whoosh');at(L[4].start+.25,'impact');
+  at(wordT(4,'memory')+0,'whoosh');at(wordT(4,'attacker')-.4,'whoosh');at(wordT(4,'NO'),'impact');
+  at(L[5].start,'whoosh');at(wordT(5,'$200.')-.1,'ding');
+  at(L[6].start,'whoosh');at(wordT(6,'FIX'),'ding');
+  at(L[7].start,'whoosh');at(L[7].start+.3,'type');at(wordT(7,'UPDATE'),'pop');at(wordT(7,'LINK'),'pop');at(wordT(7,'subscribe'),'whoosh');at(wordT(7,'Ayaz!')-.25,'click');
+  at(L[6].start+.9,'pop');at(L[5].start+.2,'type');at(wordT(5,'cost')-.6,'pop');
+  // counter ticks: one tick each time the shown $ value passes a multiple of 10
+  const tc=wordT(5,'cost')-.2,te=wordT(5,'$200.')+.1;let last=-1;
+  for(let x=tc;x<=te;x+=1/120){const v=Math.round(eo(lin(x,tc,te))*199);const b=Math.floor(v/10);if(b!==last&&v<199){at(x,'tick');last=b}}
+  at(te,'cash');
+  // assistant points at each reveal, waves at the end
+  ARM=[[L[3].start-.1,L[3].end+.5],[L[4].start+.1,L[4].start+1.6],[te-.3,te+1.1],[wordT(6,'FIX')-.1,wordT(6,'FIX')+1.2],[wordT(7,'LINK')-.2,TM.total]];
+  ARM_WAVE=wordT(7,'subscribe');
+}
+function wordT(li,w){const x=WORDS[li].find(o=>o.w.startsWith(w));return x?x.s:TM.lines[li].start}
+
+function caption(t){
+  const cap=$('cap');let li=-1;
+  for(let i=0;i<TM.lines.length;i++){if(t>=TM.lines[i].start-.05&&t<TM.lines[i].end+.25)li=i}
+  if(li<0){cap.innerHTML='';return}
+  const ws=WORDS[li];let cur=ws.findIndex(o=>t<o.e);if(cur<0)cur=ws.length-1;
+  // chunk into groups of up to 4 words
+  const g=Math.floor(cur/4)*4;const grp=ws.slice(g,g+4);
+  const colors=['#6C4CF1','#FF4D5E','#18C08F','#FF8A3D'];
+  cap.innerHTML=grp.map((o,i)=>{const on=t>=o.s;const isKW=o.w.replace(/[^A-Z0-9$]/g,'').length>=3&&o.w===o.w.toUpperCase()&&/[A-Z]/.test(o.w)&&o.w!=='AI';
+    const k=lin(t,o.s,o.s+.12);const sc=on?(1+.12*(1-k)):1;const op=on?1:.35;
+    const st=`opacity:${op};transform:scale(${sc})`;
+    return isKW?`<span class="kw" style="${st};background:${colors[li%4]}">${o.w}</span>`:`<span style="${st}">${o.w}</span>`}).join(' ');
+}
+
+
+let MOUTH=[];window.setMouth=a=>{MOUTH=a};
+let ARM=[];
+function asst(t){
+  const i=Math.min(MOUTH.length-1,Math.max(0,Math.round(t*30)));const m=MOUTH.length?MOUTH[i]:0;
+  $('mOpen').style.opacity=m>.08?1:0;$('mClosed').style.opacity=m>.08?0:1;
+  $('mO').setAttribute('ry',6+22*m);$('mO').setAttribute('rx',16+8*m);$('mT').setAttribute('cy',306+12*m);
+  // blink every ~3.2 s
+  const bp=(t+.7)%3.2;const bl=bp<.12?Math.abs(Math.sin(bp/.12*Math.PI)):0;
+  $('eyeL').style.transform=`scaleY(${1-bl*.9})`;$('eyeR').style.transform=`scaleY(${1-bl*.9})`;
+  // idle bob + head tilt with speech
+  const bob=Math.sin(t*2.2)*6;$('asst').style.transform=`translateY(${bob+ (1-eo(lin(t,0,.5)))*400}px)`;
+  $('aHead').style.transform=`translateY(34px) rotate(${Math.sin(t*1.3)*2.5+m*2}deg) translateY(${-m*3}px)`;$('aHead').style.transformOrigin='290px 330px';
+  // arm: raised during reveal windows
+  let a=0;for(const [s,e] of ARM){a=Math.max(a,Math.min(eo(lin(t,s,s+.25)),1-lin(t,e-.25,e)))}
+  const wave=(t>ARM_WAVE?Math.sin(t*14)*10*lin(t,ARM_WAVE,ARM_WAVE+.2):0);
+  $('aArm').style.transform=`translateY(${(1-a)*720}px) rotate(${-8*a+wave}deg)`;
+  // brows up on reveals
+  $('brL').style.transform=$('brR').style.transform=`translateY(${-6*a}px)`;
+}
+let ARM_WAVE=1e9;
+
+function render(t){
+  const L=TM.lines;
+  // background drift
+  $('b1').style.transform=`translate(${Math.sin(t*.4)*60}px,${Math.cos(t*.3)*50}px)`;
+  $('b2').style.transform=`translate(${Math.cos(t*.35)*70}px,${Math.sin(t*.45)*60}px)`;
+  $('b3').style.transform=`translate(${Math.sin(t*.5)*50}px,${Math.cos(t*.4)*40}px)`;
+
+  // S1 0 -> L1.start
+  const e1=L[1].start;
+  if(vis($('s1'),t,0,e1+.1,.01)>0){
+    const k=pop(t,0,.5);$('s1card').style.transform=`translateX(-50%) scale(${.85+.15*k}) translateY(${(1-k)*80}px)`;
+    $('s1title').style.transform=`translateX(-50%) scale(${pop(t,.15,.4)})`;
+    const by=60+((t*380)%640);$('s1beam').style.top=(t<2.3?by:470)+'px';$('s1beam').style.opacity=t<2.3?1:0;
+    const bk=pop(t,2.3,.4);$('s1bug').style.transform=`scale(${bk})`;
+    const sh=t>2.3&&t<2.7?Math.sin(t*90)*12*(2.7-t)/.4:0;$('s1card').style.marginLeft=sh+'px';
+    $('s1stamp').style.transform=`rotate(-6deg) scale(${t<2.9?0:1+1.2*(1-eo(lin(t,2.9,3.15)))})`;$('s1stamp').style.opacity=lin(t,2.9,3.0);
+    // slow push-in
+    $('s1').style.transform=`scale(${1+.04*lin(t,0,e1)})`;
+  }
+  // S2
+  const s2a=L[1].start,s2b=L[2].start;
+  if(vis($('s2'),t,s2a-.05,s2b+.1,.15)>0){
+    const p=eo(lin(t,s2a,L[1].end-.35));$('s2ring').setAttribute('stroke-dashoffset',1759.3*(1-p));
+    const mins=Math.floor(p*59),secs=Math.floor((p*3540)%60);
+    $('s2time').textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+    const bk=pop(t,L[1].end-.35,.35);$('s2big').style.transform=`scale(${bk})`;$('s2big').style.opacity=lin(t,L[1].end-.35,L[1].end-.3);
+    $('s2time').style.opacity=1-lin(t,L[1].end-.4,L[1].end-.3)*.0;
+    $('s2').style.transform=`scale(${.9+.1*eo(lin(t,s2a,s2a+.3))})`;
+  }
+  // S3
+  const s3a=L[2].start,s3b=L[3].start;
+  if(vis($('s3'),t,s3a-.05,s3b,.15)>0){
+    ['s3a','s3b','s3c'].forEach((id,i)=>{const k=pop(t,s3a+.6+i*.8,.4);$(id).style.transform=`scale(${k})`;$(id).style.opacity=lin(t,s3a+.6+i*.8,s3a+.7+i*.8)});
+    $('s3q').style.filter=`blur(${6+Math.sin(t*6)*2}px)`;
+    $('s3card').style.transform=`translateX(-50%) rotate(${Math.sin(t*2)*2}deg) scale(${1+.04*Math.sin(t*3)})`;
+  }
+  // S4
+  const s4a=L[3].start-.05,s4b=L[4].start;
+  if(vis($('s4'),t,s4a,s4b+.05,.02)>0){
+    
+    const k=pop(t,s4a,.45);$('s4wrap').style.transform=`scale(${.6+.4*k})`;
+    $('s4txt').style.filter=`blur(${(1-lin(t,s4a,s4a+.25))*16}px)`;
+    $('st1').style.transform=`translateY(${-((t*20)%10)}px)`;$('st2').style.transform=`translateY(${-((t*20+5)%10)}px)`;
+  }
+  // S5
+  const s5a=L[4].start,s5b=L[5].start;
+  if(vis($('s5'),t,s5a-.05,s5b+.05,.15)>0){
+    const tm=wordT(4,'memory')-.15,ta=wordT(4,'that')-.1;
+    const nk=pop(t,s5a+.2,.4);$('s5name').style.transform=`scale(${t<s5a+.2?0:nk}) rotate(${-3*nk}deg)`;
+    $('s5name').style.opacity=lin(t,s5a+.2,s5a+.25);
+    const mo=Math.min(lin(t,tm,tm+.3),1-lin(t,ta-.2,ta));$('s5mem').style.opacity=mo;
+    $('s5mem').style.transform=`translateX(-50%) translateY(${(1-eo(lin(t,tm,tm+.35)))*120}px)`;
+    const cells=document.querySelectorAll('.cell');
+    cells.forEach((c,i)=>{const ct=tm+.3+i*.07;const on=t>ct;const bad=i>=12;
+      c.style.background=on?(bad?'#FF4D5E':'#6C4CF1'):'#EEEAFE';c.style.borderColor=on&&bad?'#FF4D5E':'#DCD4FF';
+      c.style.transform=on&&bad?`translate(${Math.sin(t*70+i)*4}px,0)`:'none'});
+    $('s5oob').style.opacity=lin(t,tm+1.3,tm+1.5);
+    const ao=lin(t,ta,ta+.3);$('s5atk').style.opacity=ao;$('s5atk').style.transform=`translateY(${(1-eo(ao))*100}px)`;
+    const pk=eo(lin(t,ta+.5,ta+1.6));$('s5arrow').style.width=(300*pk)+'px';
+    $('s5packet').style.left=(390+250*pk)+'px';$('s5packet').style.opacity=pk>0&&pk<1?1:0;
+    const tn=wordT(4,'NO');const lk=lin(t,tn-.1,tn+.2);
+    $('s5shackle').style.transform=`translate(${lk*3}px,${-lk*3}px) rotate(${lk*25}deg)`;$('s5shackle').style.transformOrigin='16px 11px';
+    $('s5lock').style.transform=`translateY(${lk*20}px)`;
+    $('s5nopw').style.transform=`scale(${t<tn?0:pop(t,tn,.35)}) rotate(-4deg)`;
+    // name shrinks when other parts present
+    if(t>tm){$('s5name').style.transform=`scale(${1-.35*eo(lin(t,tm,tm+.3))}) translateY(${-60*eo(lin(t,tm,tm+.3))}px)`}
+  }
+  // S6
+  const s6a=L[5].start,s6b=L[6].start;
+  if(vis($('s6'),t,s6a-.05,s6b+.05,.15)>0){
+    const full='> audit the HotSpot JIT\n> look for memory bugs\n✓ bug found  (~1 hour)';
+    const n=Math.floor(full.length*lin(t,s6a+.2,s6a+2.6));$('s6type').textContent=full.slice(0,n)+(Math.floor(t*3)%2?'▌':' ');
+    $('s6term').style.transform=`translateX(-50%) translateY(${(1-eo(lin(t,s6a,s6a+.35)))*-80}px)`;
+    const tc=wordT(5,'cost')-.2;const p=eo(lin(t,tc,wordT(5,'$200.')+.1));
+    $('s6num').textContent=p>=1?'< $200':'$'+Math.round(p*199);
+    const pk=pop(t,tc-.6,.4);$('s6price').style.transform=`translateX(-50%) scale(${t<tc-.6?0:pk}) rotate(${p>=1?Math.sin(t*20)*1.5*(1-lin(t,wordT(5,'$200.')+.1,wordT(5,'$200.')+.6)):0}deg)`;
+  }
+  // S7
+  const s7a=L[6].start,s7b=L[7].start;
+  if(vis($('s7'),t,s7a-.05,s7b+.05,.15)>0){
+    $('s7chip').style.transform=`translateX(-50%) scale(${pop(t,s7a,.45)}) rotate(${Math.sin(t*1.5)*3}deg)`;
+    $('s7lab').style.transform=`translateX(-50%) scale(${t<s7a+.9?0:pop(t,s7a+.9,.35)})`;
+    const tf=wordT(6,'FIX');$('s7fix').style.transform=`translateX(-50%) scale(${t<tf?0:pop(t,tf,.4)})`;
+  }
+  // S8
+  const s8a=L[7].start;
+  if(vis($('s8'),t,s8a-.05,TM.total+1,.15)>0){
+    const full='$ java -version\nopenjdk  ...  OUTDATED ⚠';
+    const n=Math.floor(full.length*lin(t,s8a+.2,s8a+1.4));$('s8type').innerHTML=full.slice(0,n).replace('OUTDATED ⚠','<span style="color:#FF6B7A">OUTDATED ⚠</span>')+(Math.floor(t*3)%2?'▌':'');
+    $('s8term').style.transform=`translateX(-50%) translateY(${(1-eo(lin(t,s8a,s8a+.35)))*-80}px)`;
+    const tu=wordT(7,'UPDATE');$('s8upd').style.transform=`translateX(-50%) scale(${t<tu?0:pop(t,tu,.4)*(1+.03*Math.sin(t*8))})`;
+    const tl=wordT(7,'LINK');const co=lin(t,tl-.5,tl-.2);$('s8cmt').style.opacity=co;$('s8cmt').style.transform=`translateY(${(1-eo(co))*60}px)`;
+    $('s8word').textContent='LINK'.slice(0,Math.floor(4*lin(t,tl,tl+.4)));
+    const ts=wordT(7,'subscribe');const so=lin(t,ts-.2,ts+.1);$('s8sub').style.opacity=so;$('s8sub').style.transform=`scale(${t<ts-.2?0:pop(t,ts-.2,.4)})`;
+    const tc=wordT(7,'Ayaz!')-.25;
+    const cx=900-260*eo(lin(t,ts,tc)),cy=1500-330*eo(lin(t,ts,tc));
+    const c=$('s8cursor');c.style.left=cx+'px';c.style.top=cy+'px';c.style.opacity=lin(t,ts,ts+.15);
+    c.style.transform=`scale(${t>tc&&t<tc+.15?.8:1})`;
+    const pressed=t>=tc;$('s8btn').style.background=pressed?'#E4E1F2':'#FF0033';$('s8btn').style.color=pressed?'#1B1640':'#fff';
+    $('s8lbl').textContent=pressed?'SUBSCRIBED':'SUBSCRIBE';$('s8bell').style.fill=pressed?'#1B1640':'#fff';
+    $('s8bell').style.transform=pressed?`rotate(${Math.sin((t-tc)*30)*20*(1-lin(t,tc,tc+.8))}deg)`:'none';
+    $('s8btn').style.transform=`scale(${t>tc&&t<tc+.15?.92:1})`;
+  }
+  asst(t);
+  if(t>=TM.lines[3].start-.05&&t<TM.lines[3].start+.35){$("flash").style.opacity=1-lin(t,TM.lines[3].start-.05,TM.lines[3].start+.3)}else{$("flash").style.opacity=0}
+  caption(t);
+}
+</script>
+</body></html>
