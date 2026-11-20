@@ -6,22 +6,24 @@ from kokoro_onnx import Kokoro
 
 # (spoken text, caption text)
 LINES = [
-    ("An AI just found a critical bug in one of the most used programming languages on Earth.",
-     "An AI just found a CRITICAL bug in one of the most used programming languages on Earth."),
-    ("And it took about one hour.", "And it took about ONE HOUR."),
-    ("Banks, big companies, and millions of servers run on this language.",
-     "Banks, big companies, and millions of servers run on this language."),
-    ("It's Java.", "It's JAVA."),
-    ("Researchers named it Java Four Shell. A memory bug in Java's Base sixty four decoder, that could let an attacker run code on a server, with no password.",
-     "Researchers named it JAVA4SHELL. A memory bug in Java's Base64 decoder, that could let an attacker run code on a server, with NO PASSWORD."),
-    ("The AI was OpenAI's Codex. And the whole hunt cost under two hundred dollars.",
-     "The AI was OpenAI's CODEX. And the whole hunt cost under $200."),
-    ("It only affects newer Intel and AMD chips, and the fix is already out.",
-     "It only affects newer Intel and AMD chips, and the FIX is already out."),
-    ("So if you run Java, update it today. Comment link for the full report, and subscribe to Study with Ayaz!",
-     "So if you run Java, UPDATE it today. Comment LINK for the full report, and subscribe to Study with Ayaz!"),
+    ("This portfolio builds itself, right in front of you.",
+     "This portfolio BUILDS ITSELF, right in front of you."),
+    ("And it's just one HTML file. No React. No framework.",
+     "And it's just ONE HTML file. No React. No framework."),
+    ("Here's how it looks on a phone. Dark mode, and an animated server log.",
+     "Here's how it looks on a phone. DARK MODE, and an animated server log."),
+    ("A flagship project with an interactive pipeline, and every project linked to its code.",
+     "A FLAGSHIP project with an interactive pipeline, and every project linked to its CODE."),
+    ("Want the same one? Ayaz put the full code on GitHub, for free.",
+     "Want the same one? Ayaz put the full code on GITHUB, for FREE."),
+    ("Fork the repo, and change the name, projects, and links to yours.",
+     "FORK the repo, and change the name, projects, and links to YOURS."),
+    ("Then turn on GitHub Pages, and your portfolio is live. Free hosting.",
+     "Then turn on GitHub PAGES, and your portfolio is LIVE. Free hosting."),
+    ("Comment portfolio, and I'll send you the repo. And subscribe to Study with Ayaz!",
+     "Comment PORTFOLIO, and I'll send you the repo. And subscribe to Study with Ayaz!"),
 ]
-GAP = 0.28  # pause between lines (s)
+GAP = 0.45  # pause between lines (s)
 SR = 24000
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
@@ -30,9 +32,9 @@ chunks.append(np.zeros(int(0.35 * SR), dtype=np.float32))
 for spoken, cap in LINES:
     if "Ayaz" in spoken:
         ph = k.tokenizer.phonemize(spoken, "en-us").replace("ˈaɪæz", "ɐjˈɑːz")
-        audio, sr = k.create(ph, voice="af_heart", speed=1.15, is_phonemes=True)
+        audio, sr = k.create(ph, voice="af_heart", speed=0.92, is_phonemes=True)
     else:
-        audio, sr = k.create(spoken, voice="af_heart", speed=1.15, lang="en-us")
+        audio, sr = k.create(spoken, voice="af_heart", speed=0.92, lang="en-us")
     assert sr == SR
     # trim leading/trailing silence
     idx = np.where(np.abs(audio) > 0.01)[0]
