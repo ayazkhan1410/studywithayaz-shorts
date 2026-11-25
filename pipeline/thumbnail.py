@@ -22,7 +22,7 @@ for ln in headline.split("|"):
         else:
             parts.append(html.escape(w))
     lines.append(" ".join(parts))
-page = f"""<!DOCTYPE html><html><head><style>
+page = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><style>
 @font-face{{font-family:M;src:url("file://{FONT}");font-weight:100 900}}
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{width:1080px;height:1920px;overflow:hidden;font-family:M;background:linear-gradient(160deg,#EEF0FF,#FDF0FF 45%,#FFF3E8);position:relative}}
